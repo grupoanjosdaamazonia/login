@@ -1,0 +1,18 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Go.drive
+        env:
+          SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhwcGhkc3N0bmRvYmx3d29nbXdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4OTg1MzksImV4cCI6MjA5OTQ3NDUzOX0.Etvbd16es_yVX-UesddZwbpvvXPnu-sIK8JQGmBKs5A
+        run: |
+          curl -s -o /dev/null \
+            -H "apikey: $SUPABASE_KEY" \
+            https://xpphdsstndoblwwogmwm.supabase.co/rest/v1/
